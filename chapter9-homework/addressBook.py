@@ -15,18 +15,18 @@ class Person:
         return 'name: %s, email: %s' % (self.name, self.email)
 
 
-class AddBook:
+class AddrBook:
     """
     AddBook class
     """
     bookdata = 'bookdata.txt'
 
     def __init__(self):
-        if not os.path.isfile(AddBook.bookdata):
+        if not os.path.isfile(AddrBook.bookdata):
             print 'file not exist'
             self.book = []
         else:
-            f = file(AddBook.bookdata)
+            f = file(AddrBook.bookdata)
             self.book = p.load(f)
             f.close()
 
@@ -45,12 +45,12 @@ class AddBook:
             print
 
     def persistent(self):
-        f = file(AddBook.bookdata, 'w')
+        f = file(AddrBook.bookdata, 'w')
         p.dump(self.book, f)
         f.close()
 
 
-book = AddBook()
+book = AddrBook()
 person = Person('jack','jack@tom.com')
 print 'person is', person
 print 'add before is',
