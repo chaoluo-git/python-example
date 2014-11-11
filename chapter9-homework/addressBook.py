@@ -5,6 +5,9 @@ import os
 
 
 class Person:
+    """
+    Person class
+    """
     def __init__(self, name, email):
         self.name = name
         self.email = email
@@ -13,7 +16,9 @@ class Person:
 
 
 class AddBook:
-
+    """
+    AddBook class
+    """
     bookdata = 'bookdata.txt'
 
     def __init__(self):
