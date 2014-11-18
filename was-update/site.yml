@@ -1,0 +1,6 @@
+---
+- name: Update Websphere's Web Application
+  hosts: was-server
+  remote_user: vagrant
+  roles:
+    - was

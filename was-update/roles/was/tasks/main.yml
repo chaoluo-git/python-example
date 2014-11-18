@@ -1,0 +1,20 @@
+---
+- name: step 1 --> copy update script to wasadmin shell folder
+  copy: src=update_cluster.py dest="{{was_root}}/AppServer/profiles/Dmgr01/bin/{{app_name}}_update.py"
+- debug: msg="copy update script to the dmgr bin folder[{{was_root}}/AppServer/profiles/Dmgr01/bin/] complete!"
+
+- name: step 2 --> write the update info into the txt
+  command: echo "{{app_name}},{{cell_name}},{{context_root}},{{ear_path}},{{cluster_name}}" > {{app_name}}_update.txt
+  args:
+    chdir: "{{was_root}}/AppServer/profiles/Dmgr01/bin/"
+- debug: msg="write '{{app_name}},{{cell_name}},{{context_root}},{{ear_path}},{{cluster_name}}' into file[{{was_root}}/AppServer/profiles/Dmgr01/bin/{{app_name}}_update.txt] complete!"
+
+- name: step 3 --> execute wasadmin.sh script for update
+#  shell: touch wsadmin.sh
+  shell: ./wsadmin.sh -lang jython -user {{user}} -password {{password}} -f {{app_name}}_update.py {{app_name}}_update
+  args:
+    chdir: "{{was_root}}/AppServer/profiles/Dmgr01/bin/"
+  register: result
+  #忽略错误继续执行
+  ignore_errors: yes
+- debug: msg="execute wasadmin script complete!the result is {{result.stdout}}"

@@ -1,0 +1,10 @@
+
+was_root: /paas/vagrant/was6/WebSphere
+cell_name: tigerCell01
+cluster_name: clusterForAnsible
+user: admin
+password: admin
+app_name: myWarApp_war
+ear_path: /paas/vagrant/ljx/AutoDeploy/DeployFiles/MyHelloworld.war
+context_root: myApp
+deploy_path: /paas/vagrant/ljx/AutoDeploy
